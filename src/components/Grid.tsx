@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { LogEntry } from "./LogDetail";
+import Day02_LCP from "./Day02_LCP";
 
 // ── Config ───────────────────────────────────────────────────────────────────
-export const ACTIVE_DAY = 1;
+// The highest unlocked day. Days 1..ACTIVE_DAY are clickable.
+export const ACTIVE_DAY = 2;
 const TOTAL_DAYS = 27;
 const MONO = "'JetBrains Mono', 'Courier New', monospace";
 
@@ -18,6 +20,17 @@ export const LOG_ENTRIES: Record<number, LogEntry> = {
       "Despliegue de infraestructura Project_27.log. Auditoría técnica de milfshakes.es completada. Optimización de Performance y Core Web Vitals iniciada. Stack definido: Astro 5 + Tailwind + Framer Motion.",
     snippet: "Init(Andrea_DNA + Milfshake_Hype);",
     tags: ["infrastructure", "audit", "performance", "day-01"]
+  },
+  2: {
+    id: "LOG_ENTRY_02",
+    title: "THE_LCP_KILLER",
+    day: 2,
+    status: "COMPLETED",
+    details:
+      "Análisis de carga: El LCP de 7.7s penaliza la conversión. Implemento compresión quirúrgica y carga asíncrona, eliminando 570 KiB de basura digital sin sacrificar estética.",
+    snippet: "Compress(PNG_570KiB).convert('webp').lazyLoad();",
+    tags: ["performance", "LCP", "webp", "core-web-vitals", "day-02"],
+    customContent: <Day02_LCP />
   }
 };
 
@@ -115,15 +128,23 @@ function LaserScan({ active }: { active: boolean }) {
 interface DayCardProps {
   day: number;
   isActive: boolean;
+  isUnlocked: boolean;
   isLocked: boolean;
   index: number;
   onClick?: (entry: LogEntry) => void;
 }
 
-function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
+function DayCard({
+  day,
+  isActive,
+  isUnlocked,
+  isLocked,
+  index,
+  onClick
+}: DayCardProps) {
   const [pressed, setPressed] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const isClickable = isActive && !!onClick;
+  const isClickable = (isActive || isUnlocked) && !!onClick;
   const entry = LOG_ENTRIES[day];
   const label = MILESTONES[day];
 
@@ -174,8 +195,8 @@ function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
 
         border: isActive
           ? `1px solid ${hovered || pressed ? "#FF4444" : "#FF0000"}`
-          : pressed && !isLocked
-            ? "1px solid rgba(255,0,0,0.45)"
+          : isUnlocked
+            ? `1px solid ${hovered ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.12)"}`
             : "1px solid rgba(255,255,255,0.07)",
 
         background: isActive
@@ -184,8 +205,10 @@ function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
             : hovered
               ? "rgba(255,0,0,0.08)"
               : "rgba(255,0,0,0.04)"
-          : pressed && !isLocked
-            ? "rgba(255,0,0,0.03)"
+          : isUnlocked
+            ? hovered
+              ? "rgba(255,255,255,0.04)"
+              : "rgba(255,255,255,0.02)"
             : "rgba(255,255,255,0.013)",
 
         opacity: isLocked ? 0.3 : 1,
@@ -223,19 +246,47 @@ function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
         <motion.div
           animate={hovered ? { scale: [1, 1.2, 1] } : { scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-1 right-1 text-[8px] font-bold
-                     leading-none px-1 py-px z-10"
+          className="absolute top-1 right-1 text-[8px] font-bold leading-none px-1 py-px z-10"
           style={{ background: "#FF0000", color: "#050505" }}
         >
           ▶
         </motion.div>
+      ) : isUnlocked ? (
+        <div className="absolute top-1 right-1">
+          <svg
+            width="9"
+            height="9"
+            viewBox="0 0 9 9"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle
+              cx="4.5"
+              cy="4.5"
+              r="3.8"
+              stroke="rgba(0,255,65,0.5)"
+              strokeWidth="0.9"
+            />
+            <path
+              d="M2.5 4.5l1.5 1.5 2.5-2.5"
+              stroke="#00FF41"
+              strokeWidth="0.9"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
       ) : null}
 
       {/* ── Day number ───────────────────────────────────────────────────── */}
       <span
         className="relative z-10 text-base md:text-lg font-bold tabular-nums leading-none"
         style={{
-          color: isActive ? "#FF0000" : "rgba(255,255,255,0.45)",
+          color: isActive
+            ? "#FF0000"
+            : isUnlocked
+              ? "rgba(255,255,255,0.65)"
+              : "rgba(255,255,255,0.45)",
           textShadow:
             isActive && hovered ? "0 0 8px rgba(255,0,0,0.7)" : "none",
           transition: "text-shadow 150ms ease"
@@ -249,7 +300,11 @@ function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
         <span
           className="relative z-10 mt-1 text-[7px] md:text-[9px] tracking-widest leading-none"
           style={{
-            color: isActive ? "rgba(255,80,80,0.9)" : "rgba(255,255,255,0.2)"
+            color: isActive
+              ? "rgba(255,80,80,0.9)"
+              : isUnlocked
+                ? "rgba(255,255,255,0.3)"
+                : "rgba(255,255,255,0.2)"
           }}
         >
           {label}
@@ -258,14 +313,16 @@ function DayCard({ day, isActive, isLocked, index, onClick }: DayCardProps) {
 
       {/* ── Desktop hover hint ───────────────────────────────────────────── */}
       <AnimatePresence>
-        {isActive && hovered && (
+        {(isActive || isUnlocked) && hovered && (
           <motion.span
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
-            className="absolute bottom-1 text-[7px] tracking-widest
-                       text-[#FF0000]/80 pointer-events-none z-10"
+            className="absolute bottom-1 text-[7px] tracking-widest pointer-events-none z-10"
+            style={{
+              color: isActive ? "rgba(255,0,0,0.8)" : "rgba(255,255,255,0.35)"
+            }}
           >
             OPEN
           </motion.span>
@@ -304,7 +361,6 @@ interface GridProps {
 
 export default function Grid({ onDayClick }: GridProps) {
   const progress = ((ACTIVE_DAY / TOTAL_DAYS) * 100).toFixed(1);
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -391,21 +447,30 @@ export default function Grid({ onDayClick }: GridProps) {
           }}
         >
           {Array.from({ length: TOTAL_DAYS }, (_, i) => i + 1).map(
-            (day, idx) => (
-              <div
-                key={day}
-                className="md:min-h-0"
-                style={{ scrollSnapAlign: idx % 3 === 0 ? "start" : undefined }}
-              >
-                <DayCard
-                  day={day}
-                  isActive={day === ACTIVE_DAY}
-                  isLocked={day > ACTIVE_DAY}
-                  index={idx}
-                  onClick={day === ACTIVE_DAY ? onDayClick : undefined}
-                />
-              </div>
-            )
+            (day, idx) => {
+              const isActive = day === ACTIVE_DAY;
+              const isUnlocked = day < ACTIVE_DAY && !!LOG_ENTRIES[day];
+              const isLocked = day > ACTIVE_DAY;
+              const hasEntry = !!LOG_ENTRIES[day];
+              return (
+                <div
+                  key={day}
+                  className="md:min-h-0"
+                  style={{
+                    scrollSnapAlign: idx % 3 === 0 ? "start" : undefined
+                  }}
+                >
+                  <DayCard
+                    day={day}
+                    isActive={isActive}
+                    isUnlocked={isUnlocked}
+                    isLocked={isLocked}
+                    index={idx}
+                    onClick={hasEntry ? onDayClick : undefined}
+                  />
+                </div>
+              );
+            }
           )}
         </div>
 

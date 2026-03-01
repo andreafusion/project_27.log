@@ -97,15 +97,6 @@ export default function Terminal({ onComplete }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Styled console Easter egg
-    console.log(
-      "%c[ PROJECT_27.LOG — AUDIT_DETECTED ]%c\nNil, sé que estás auditando el código.\nBienvenido a la ejecución de Andrea.",
-      "background:#050505;color:#FF0000;font-weight:800;font-size:13px;font-family:'JetBrains Mono',monospace;padding:8px 14px;border-left:3px solid #FF0000;letter-spacing:3px;",
-      "background:#050505;color:#FFFFFF;font-size:13px;font-family:'JetBrains Mono',monospace;padding:8px 14px;"
-    );
-  }, []);
-
-  useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     BOOT_LINES.forEach((line, index) => {

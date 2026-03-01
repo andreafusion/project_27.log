@@ -1,16 +1,19 @@
 "use client";
 import { useEffect } from "react";
+import type React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 export interface LogEntry {
-  id: string; // e.g. "LOG_ENTRY_01"
-  title: string; // e.g. "SYSTEM_GENESIS"
+  id: string;
+  title: string;
   day: number;
   status: "COMPLETED" | "IN_PROGRESS" | "PENDING" | "LOCKED";
   details: string;
-  snippet: string; // code-like string
+  snippet: string;
   tags?: string[];
+  /** Optional custom React content rendered below the details section */
+  customContent?: React.ReactNode;
 }
 
 interface LogDetailProps {
@@ -311,6 +314,20 @@ export default function LogDetail({ entry, onClose }: LogDetailProps) {
                   {entry.details}
                 </p>
               </div>
+
+              {/* Custom content (e.g. Day02 LCP slider) */}
+              {entry.customContent && (
+                <div>
+                  <div
+                    style={{
+                      height: "1px",
+                      background: "rgba(255,255,255,0.06)"
+                    }}
+                    className="mb-5"
+                  />
+                  {entry.customContent}
+                </div>
+              )}
 
               {/* Tags */}
               {entry.tags && entry.tags.length > 0 && (
