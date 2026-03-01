@@ -219,13 +219,44 @@ export default function LogDetail({ entry, onClose }: LogDetailProps) {
               </div>
               <button
                 onClick={onClose}
-                className="flex items-center gap-1.5 text-[10px] text-[#444]
-                           hover:text-[#FF0000] transition-colors
-                           touch-manipulation px-2 py-1"
-                style={{ border: "1px solid rgba(255,255,255,0.07)" }}
-                aria-label="Close"
+                className="group relative flex items-center gap-2
+                           text-[10px] tracking-widest
+                           touch-manipulation px-3 py-1.5
+                           transition-all duration-150
+                           focus:outline-none"
+                style={{
+                  border: "1px solid rgba(255,0,0,0.35)",
+                  color: "#FF0000",
+                  background: "rgba(255,0,0,0.04)",
+                  fontFamily: MONO
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "rgba(255,0,0,0.12)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "#FF0000";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                    "0 0 10px rgba(255,0,0,0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "rgba(255,0,0,0.04)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "rgba(255,0,0,0.35)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                    "none";
+                }}
+                aria-label="Close session"
               >
-                ESC <span className="text-[#333]">/</span> ✕
+                {/* Blinking error prefix */}
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ repeat: Infinity, duration: 0.9 }}
+                  style={{ color: "#FF0000", fontSize: "9px" }}
+                >
+                  ✕
+                </motion.span>
+                <span>[ CLOSE_SESSION ]</span>
               </button>
             </div>
 

@@ -78,7 +78,7 @@ const BOOT_LINES = [
   { text: "[EXEC]    Launching dashboard interface...", delay: 6500 }
 ];
 
-const TYPING_SPEED = 18; // ms per char
+const TYPING_SPEED = 22; // ms per char
 
 export default function Terminal({ onComplete }: TerminalProps) {
   const [visibleLines, setVisibleLines] = useState<
@@ -97,6 +97,15 @@ export default function Terminal({ onComplete }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Styled console Easter egg
+    console.log(
+      "%c[ PROJECT_27.LOG — AUDIT_DETECTED ]%c\nNil, sé que estás auditando el código.\nBienvenido a la ejecución de Andrea.",
+      "background:#050505;color:#FF0000;font-weight:800;font-size:13px;font-family:'JetBrains Mono',monospace;padding:8px 14px;border-left:3px solid #FF0000;letter-spacing:3px;",
+      "background:#050505;color:#FFFFFF;font-size:13px;font-family:'JetBrains Mono',monospace;padding:8px 14px;"
+    );
+  }, []);
+
+  useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     BOOT_LINES.forEach((line, index) => {
@@ -107,7 +116,6 @@ export default function Terminal({ onComplete }: TerminalProps) {
             { ...line, typed: "", done: false }
           ]);
 
-          // Type out the line
           const chars = line.text.split("");
           chars.forEach((_, ci) => {
             timers.push(
@@ -136,7 +144,7 @@ export default function Terminal({ onComplete }: TerminalProps) {
       );
     });
 
-    // After all lines, trigger glitch and exit
+    // Glitch exit
     const lastDelay = BOOT_LINES[BOOT_LINES.length - 1].delay;
     const totalTyping =
       BOOT_LINES[BOOT_LINES.length - 1].text.length * TYPING_SPEED;
@@ -266,14 +274,14 @@ export default function Terminal({ onComplete }: TerminalProps) {
             className="flex-1 overflow-hidden px-8 py-6 flex flex-col justify-start"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
-            <div className="mb-6 text-xs" style={{ color: "#333" }}>
+            <div className="mb-6 text-xs" style={{ color: "#222" }}>
               ──────────────────────────────────────────────────────────────────────────
             </div>
 
             {visibleLines.map((line, i) => (
               <div
                 key={i}
-                className="mb-1 text-sm leading-relaxed flex items-baseline gap-0"
+                className="mb-1 text-sm leading-relaxed flex items-baseline"
                 style={{ minHeight: "1.5rem" }}
               >
                 {line.text === "" ? (
