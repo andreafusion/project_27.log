@@ -1,43 +1,50 @@
-# Astro Starter Kit: Minimal
+# 📁 Project_27.log: The Execution Trace
 
-```sh
-npm create astro@latest -- --template minimal
-```
+> **Status:** Running... 🟢
+> **Subject:** Nil Ojeda Ecosistem / Milfshakes.es
+> **Executioner:** Andrea (Frontend Dev & Creative Strategist)
+> **Deadline:** T-Minus 27 Days
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## ⚡ El Manifiesto
 
-Inside of your Astro project, you'll see the following folders and files:
+No estoy aquí para enseñarte un portfolio de proyectos pasados. Estoy aquí para demostrarte qué puedo construir en **27 días**.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+**Project_27.log** es una auditoría creativa y técnica en tiempo real. 27 días de "commits" diarios donde disecciono, rediseño y elevo componentes del universo de Nil Ojeda y Milfshake. Menos charla, más código.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠 Tech Stack (The Toolkit)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Para que un producto sea disruptivo, los cimientos deben ser sólidos:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- **Architecture:** [Astro](https://astro.build/) (Performance-first, zero JS by default).
+- **Styling:** Tailwind CSS (Custom Design System).
+- **Motion:** GSAP & Framer Motion (60fps interactions).
+- **Deployment:** Vercel Edge Networks.
+- **Brainware:** Adobe Creative Suite + Procreate (Handcrafted Illustration).
 
-## 🧞 Commands
+## 📊 Log Structure
 
-All commands are run from the root of the project, from a terminal:
+Cada día a las 00:00 (Madrid Time), se libera un nuevo bloque en el dashboard:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Phase 01:** System Initialization (Days 1-7) - _Technical foundations._
+- **Phase 02:** Flavor Engineering (Days 8-14) - _Milfshake UX & Gamification._
+- **Phase 03:** Hype Optimization (Days 15-21) - _Disruptive Marketing & Vision._
+- **Phase 04:** Final Deployment (Days 22-27) - _The Master Piece._
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🛑 Auditor's Note (Dear Nil / Coder)
+
+Si estás leyendo esto antes del evento, ya vas un paso por delante.
+He construido esto porque la mayoría de las agencias son lentas y aburridas. Yo prefiero el **caos controlado por una buena arquitectura de software**.
+
+- Inspect the code.
+- Check the Lighthouse scores.
+- Feel the animations.
+
+**¿Vemos si mi código es tan fluido como un Milfshake?**
+
+---
+
+© 2026 // Built with rigor by Andrea.

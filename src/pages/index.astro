@@ -1,17 +1,175 @@
 ---
+// src/pages/index.astro
+// project_27.log · Andrea_dev · Target: Milfshakes.es
 
+import AppEntry from '../components/AppEntry';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>PROJECT_27.LOG · Milfshakes</title>
+    <meta name="description" content="27 days. One target. Milfshakes." />
+    <meta name="robots" content="noindex" />
+
+    <!-- JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Reset & Base */
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        height: 100svh;
+        overflow: hidden;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        height: 100svh;
+        overflow: hidden;
+        position: fixed;
+        overscroll-behavior: none;
+        background: #050505;
+        color: #FFFFFF;
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        touch-action: manipulation;
+      }
+
+      ::selection {
+        background: #FF0000;
+        color: #050505;
+      }
+
+      body { cursor: crosshair; }
+      button, a, [role="button"] { cursor: crosshair; }
+
+      /* Noise texture */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        opacity: 0.55;
+        mix-blend-mode: screen;
+      }
+
+      /* CRT scanlines */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.055) 2px,
+          rgba(0, 0, 0, 0.055) 4px
+        );
+      }
+
+      /* Corner accents */
+      .corner-tl, .corner-br {
+        position: fixed;
+        width: 48px;
+        height: 48px;
+        pointer-events: none;
+        z-index: 999;
+      }
+      .corner-tl { top: 0; left: 0; }
+      .corner-br { bottom: 0; right: 0; }
+
+      .corner-tl::before, .corner-tl::after,
+      .corner-br::before, .corner-br::after {
+        content: '';
+        position: absolute;
+        background: #FF0000;
+      }
+      .corner-tl::before { top: 0; left: 0; width: 24px; height: 1.5px; }
+      .corner-tl::after  { top: 0; left: 0; width: 1.5px; height: 24px; }
+      .corner-br::before { bottom: 0; right: 0; width: 24px; height: 1.5px; }
+      .corner-br::after  { bottom: 0; right: 0; width: 1.5px; height: 24px; }
+
+      /* App root */
+      #app {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        height: 100svh;
+        overflow: hidden;
+      }
+
+      ::-webkit-scrollbar { width: 3px; height: 3px; }
+      ::-webkit-scrollbar-track { background: #050505; }
+      ::-webkit-scrollbar-thumb { background: #FF0000; }
+    </style>
+  </head>
+
+  <body>
+    <div class="corner-tl" aria-hidden="true"></div>
+    <div class="corner-br" aria-hidden="true"></div>
+
+    <div id="app">
+      <AppEntry client:only="react" />
+    </div>
+
+    <!-- Easter egg for Nil in DevTools -->
+    <script>
+      (function () {
+        var s1 = [
+          'background: #050505',
+          'color: #FF0000',
+          'font-weight: 800',
+          'font-size: 13px',
+          'font-family: "JetBrains Mono", monospace',
+          'padding: 8px 14px',
+          'border-left: 3px solid #FF0000',
+          'letter-spacing: 3px',
+        ].join(';');
+        var s2 = [
+          'background: #050505',
+          'color: #FFFFFF',
+          'font-size: 13px',
+          'font-family: "JetBrains Mono", monospace',
+          'padding: 8px 14px',
+          'line-height: 1.8',
+        ].join(';');
+        var s3 = [
+          'background: #050505',
+          'color: #FF0000',
+          'font-size: 11px',
+          'font-family: "JetBrains Mono", monospace',
+          'padding: 4px 14px 10px',
+          'letter-spacing: 2px',
+        ].join(';');
+        console.log(
+          '\n%c[ PROJECT_27.LOG — AUDIT_DETECTED ]%c\nNil, sé que estás auditando el código.\nBienvenido a la ejecución de Andrea.\n%c\n  OPERATOR  →  Andrea_dev\n  TARGET    →  Milfshakes.es\n  MISSION   →  Impresionarte en 27 días.\n  STATUS    →  ▶ IN_PROGRESS\n',
+          s1, s2, s3
+        );
+      })();
+    </script>
+  </body>
 </html>
