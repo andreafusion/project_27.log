@@ -257,7 +257,7 @@ export default function LogDetail({
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[8px] tracking-widest text-[#555] mb-1">
-                    MOD_{String(entry.day).padStart(2, "0")} · REDY_AGENCY
+                    MOD_{String(entry.day).padStart(2, "0")} · ANDREA_FUSION
                   </p>
                   <h2 className="text-lg font-bold text-white leading-tight tracking-tight">
                     {entry.title}
@@ -357,7 +357,7 @@ export default function LogDetail({
                 </div>
                 <div className="flex justify-between">
                   <span>AGENCY</span>
-                  <span className="text-[#FF0000]">REDY</span>
+                  <span className="text-[#FF0000]">ANDREAFUSION</span>
                 </div>
               </div>
             </div>
@@ -442,7 +442,7 @@ export default function LogDetail({
               className="shrink-0 flex items-center justify-between px-5 py-2 text-[8px] text-[#2a2a2a]"
               style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
             >
-              <span>REDY_AGENCY · PROJECT_27.LOG</span>
+              <span>ANDREA_FUSION · PROJECT_27.LOG</span>
               <motion.span
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}

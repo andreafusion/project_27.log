@@ -110,7 +110,7 @@ function SidebarContent({ onAudit }: SidebarContentProps) {
           </span>
         </div>
         <div className="flex items-center justify-between text-[9px]">
-          <span className="text-[#444]">REDY_AGENCY</span>
+          <span className="text-[#444]">ANDREAFUSION</span>
           <span className="text-[#FF0000] font-bold">OPERATIONAL</span>
         </div>
         <div className="flex items-center justify-between text-[9px] mt-1">
@@ -211,7 +211,7 @@ function SidebarContent({ onAudit }: SidebarContentProps) {
         >
           <p className="text-[8px] text-[#333]">OPERATOR</p>
           <p className="text-[10px] font-bold text-white mt-0.5">Andrea_dev</p>
-          <p className="text-[8px] text-[#555]">REDY · FRONTEND_ENG</p>
+          <p className="text-[8px] text-[#555]">ANDREAFUSION · FRONTEND_ENG</p>
         </div>
       </div>
     </div>
@@ -311,7 +311,7 @@ export default function Dashboard() {
         >
           <div className="flex items-center gap-2 min-w-0 truncate">
             <span className="text-[#FF0000]">◢</span>
-            <span className="text-[#444]">REDY_MCP</span>
+            <span className="text-[#444]">ANDREA_FUSION</span>
             <span className="text-[#282828]">·</span>
             <span className="hidden sm:inline text-[#333]">P27.LOG</span>
             <span className="hidden sm:inline text-[#282828]">·</span>

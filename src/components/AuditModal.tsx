@@ -295,7 +295,7 @@ export default function AuditModal({ open, onClose }: AuditModalProps) {
                 </p>
                 <p className="text-[10px] leading-relaxed text-[#888]">
                   3 módulos desplegados. Infraestructura estabilizada. El
-                  sistema REDY opera con métricas de élite. Nil Ojeda puede
+                  sistema Fusion opera con métricas de élite. Nil Ojeda puede
                   verificar cada optimización en producción.
                 </p>
                 <div className="mt-2 flex items-center gap-2">
@@ -305,7 +305,7 @@ export default function AuditModal({ open, onClose }: AuditModalProps) {
                     className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"
                   />
                   <span className="text-[9px] font-bold text-[#FF0000]">
-                    REDY_AGENCY · Andrea_dev
+                    Andrea Fusion · Andrea_dev
                   </span>
                 </div>
               </motion.div>

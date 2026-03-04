@@ -335,7 +335,7 @@ export default function Grid({ onDayClick }: GridProps) {
       transition={{ delay: 0.25, duration: 0.3 }}
       className="flex flex-col h-full min-h-0 overflow-hidden"
       style={{ fontFamily: MONO }}
-      aria-label="REDY Control Matrix — 27 modules"
+      aria-label="ANDREA Control Matrix — 27 modules"
     >
       {/* ── Panel header ─────────────────────────────────────────────────── */}
       <div
